@@ -1985,12 +1985,11 @@ void process_commands()
 
     #if defined(FAN_PIN) && FAN_PIN > -1
       case 106: //M106 Fan On
-        // M2: current 24V units use a 12V fan. Halve the power to avoid burning them out.
         if (code_seen('S')){
-           fanSpeed = constrain(code_value()/2,0,255);
+           fanSpeed=constrain(code_value(),0,255);
         }
         else {
-          fanSpeed = 127;
+          fanSpeed=255;
         }
         break;
       case 107: //M107 Fan Off
