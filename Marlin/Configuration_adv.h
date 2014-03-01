@@ -79,7 +79,7 @@
 #define EXTRUDER_1_AUTO_FAN_PIN   -1
 #define EXTRUDER_2_AUTO_FAN_PIN   -1
 // M2: extruder fan also runs the electronics fan. Set to turn on at any reasonable temperature.
-#define EXTRUDER_AUTO_FAN_TEMPERATURE 1
+#define EXTRUDER_AUTO_FAN_TEMPERATURE 25
 #define EXTRUDER_AUTO_FAN_SPEED   255  // == full speed
 
 
