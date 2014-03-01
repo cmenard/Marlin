@@ -116,6 +116,7 @@
 // M105 - Read current temp
 // M106 - Fan on
 // M107 - Fan off
+// M108 - Control MakerGear M2 Extruder/Electronics fans
 // M109 - Sxxx Wait for extruder current temp to reach target temp. Waits only when heating
 //        Rxxx Wait for extruder current temp to reach target temp. Waits when heating and cooling
 // M114 - Output current position to serial port
@@ -1994,6 +1995,12 @@ void process_commands()
         break;
       case 107: //M107 Fan Off
         fanSpeed = 0;
+        break;
+	  case 108: //M108 Fan On
+        if (code_seen('S')){
+            analogWrite(6,code_value());
+           //FanSpeed1=constrain(code_value(),0,255);
+        }
         break;
     #endif //FAN_PIN
     #ifdef BARICUDA
