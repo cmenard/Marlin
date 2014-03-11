@@ -16,7 +16,7 @@
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
 #define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
-#define STRING_CONFIG_H_AUTHOR "Jin Choi <jsc@alum.mit.edu>" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "Curtis Menard <curtis.menard@gmail.com>" // Who made the changes.
 
 // SERIAL_PORT selects which serial port should be used for communication with the host.
 // This allows the connection of wireless adapters (for instance) to non-default port pins.
@@ -616,6 +616,11 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #  define DEFAULT_LCD_CONTRAST 32
 # endif
 #endif
+
+// MakerGear M2 Custom Fan Settings
+// If using a 24V 50mm fan (#define M2_24v_50mm_Fan)
+// If using a 12V 50mm fan (//#define M2_24v_50mm_Fan)
+#define M2_24v_50mm_Fan
 
 // Increase the FAN pwm frequency. Removes the PWM noise but increases heating in the FET/Arduino
 #define FAST_PWM_FAN

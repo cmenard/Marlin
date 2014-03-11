@@ -47,6 +47,7 @@
 #include "language.h"
 #include "pins_arduino.h"
 #include "math.h"
+#include "Configuration.h"
 
 #ifdef BLINKM
 #include "BlinkM.h"
@@ -1985,13 +1986,22 @@ void process_commands()
 
     #if defined(FAN_PIN) && FAN_PIN > -1
       case 106: //M106 Fan On
-        if (code_seen('S')){
-           fanSpeed=constrain(code_value(),0,255);
-        }
-        else {
-          fanSpeed=255;
-        }
-        break;
+		if (code_seen('S')){
+			#if defined(M2_24v_50mm_Fan) 
+				fanSpeed=constrain(code_value(),0,255);
+			#else
+				fanSpeed=constrain(code_value(),0,155);
+			#endif
+		}
+		else {
+			#if defined(M2_24v_50mm_Fan)
+				fanSpeed=255;
+			#else
+				fanSpeed=127;
+			#endif
+		}
+		break;
+		
       case 107: //M107 Fan Off
         fanSpeed = 0;
         break;
