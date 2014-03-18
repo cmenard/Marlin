@@ -231,6 +231,7 @@ extern unsigned char fanSpeedSoftPwm;
 #ifdef FWRETRACT
 extern bool autoretract_enabled;
 extern bool retracted;
+extern long unsigned int autoretract_val;
 extern float retract_length, retract_feedrate, retract_zlift;
 extern float retract_recover_length, retract_recover_feedrate;
 #endif
