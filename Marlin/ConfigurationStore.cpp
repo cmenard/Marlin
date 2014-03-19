@@ -185,7 +185,7 @@ void Config_PrintSettings()
     SERIAL_ECHO_START;
     SERIAL_ECHOLNPGM("Firmware Retract Status S=(0)Disabled/(1)Enabled");
     SERIAL_ECHO_START;
-    SERIAL_ECHOPAIR("   M209 S",autoretract_val); 
+    SERIAL_ECHOPAIR("   M209 S",(long unsigned int)autoretract_enabled); 
     SERIAL_ECHOLN(""); 
     SERIAL_ECHO_START;
     SERIAL_ECHOLNPGM("Retract: S=Length (mm) F:Speed (mm/s) Z: ZLift (mm)");
