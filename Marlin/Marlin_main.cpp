@@ -235,7 +235,6 @@ int EtoPPressure=0;
 #ifdef FWRETRACT
   bool autoretract_enabled=false;
   bool retracted=false;
-  long unsigned int autoretract_val = 0; // set to 1 if autoretract_enabled=true;
   float retract_length = RETRACT_LENGTH;
   float retract_feedrate = RETRACT_FEEDRATE;
   float retract_zlift = RETRACT_ZLIFT;
@@ -2371,8 +2370,8 @@ void process_commands()
         int t= code_value() ;
         switch(t)
         {
-          case 0: autoretract_enabled=false;retracted=false;autoretract_val=0;break;
-          case 1: autoretract_enabled=true;retracted=false;autoretract_val=1;break;
+          case 0: autoretract_enabled=false;retracted=false;break;
+          case 1: autoretract_enabled=true;retracted=false;break;
           default:
             SERIAL_ECHO_START;
             SERIAL_ECHOPGM(MSG_UNKNOWN_COMMAND);
