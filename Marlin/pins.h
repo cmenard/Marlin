@@ -2037,6 +2037,9 @@
 
 #ifdef ULTRA_LCD
   #define KILL_PIN 80
+#endif
+
+#ifdef ULTIPANEL
   #ifdef NEWPANEL
    //arduino pin which triggers an piezzo beeper
     #define BEEPER 79      // Beeper on AUX-4
@@ -2050,13 +2053,13 @@
     //buttons are directly attached using AUX-2
     #define BTN_EN1 76
     #define BTN_EN2 77
-    #define BTN_ENC 78  //the click
+    #define BTN_ENC 78  //EXT2 pin 20 the click
 
     #define BLEN_C 2
     #define BLEN_B 1
     #define BLEN_A 0
 
-    #define SDCARDDETECT 81    // Ramps does not use this port
+    #define SDCARDDETECT 81    //EXT2 pin 14 Ramps does not use this port
 
     //encoder rotation values
     #define encrot0 0
@@ -2097,7 +2100,7 @@
     #define BLEN_B 1
     #define BLEN_A 0
   #endif
-#endif //ULTRA_LCD
+#endif //ULTIPANEL
 
 
 #endif
