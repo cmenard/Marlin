@@ -2037,9 +2037,6 @@
 
 #ifdef ULTRA_LCD
   #define KILL_PIN 80
-#endif
-
-#ifdef ULTIPANEL
   #ifdef NEWPANEL
    //arduino pin which triggers an piezzo beeper
     #define BEEPER 79      // Beeper on AUX-4
@@ -2100,7 +2097,7 @@
     #define BLEN_B 1
     #define BLEN_A 0
   #endif
-#endif //ULTIPANEL
+#endif //ULTRA_LCD
 
 
 #endif
