@@ -119,6 +119,8 @@
 // M107 - Fan off
 // M109 - Sxxx Wait for extruder current temp to reach target temp. Waits only when heating
 //        Rxxx Wait for extruder current temp to reach target temp. Waits when heating and cooling
+//        IF AUTOTEMP is enabled, S<mintemp> B<maxtemp> F<factor>. Exit autotemp by any M109 without F
+// M112 - Emergency stop
 // M114 - Output current position to serial port
 // M115 - Capabilities string
 // M117 - display message
@@ -190,6 +192,14 @@ bool axis_relative_modes[] = AXIS_RELATIVE_MODES;
 int feedmultiply=100; //100->1 200->2
 int saved_feedmultiply;
 int extrudemultiply=100; //100->1 200->2
+int extruder_multiply[EXTRUDERS] = {100
+  #if EXTRUDERS > 1
+    , 100
+    #if EXTRUDERS > 2
+      , 100
+    #endif
+  #endif
+};
 float volumetric_multiplier[EXTRUDERS] = {1.0
   #if EXTRUDERS > 1
     , 1.0
@@ -314,6 +324,12 @@ bool Stopped=false;
 
 bool CooldownNoWait = true;
 bool target_direction;
+
+//Insert variables if CHDK is defined
+#ifdef CHDK
+unsigned long chdkHigh = 0;
+boolean chdkActive = false;
+#endif
 
 //===========================================================================
 //=============================Routines======================================
@@ -659,6 +675,11 @@ void get_command()
           }
 
         }
+
+        //If command was e-stop process now
+        if(strcmp(cmdbuffer[bufindw], "M112") == 0)
+          kill();
+        
         bufindw = (bufindw + 1)%BUFSIZE;
         buflen += 1;
       }
@@ -1163,19 +1184,21 @@ void process_commands()
         //ClearToSend();
         return;
       }
-      //break;
+      break;
     case 2: // G2  - CW ARC
       if(Stopped == false) {
         get_arc_coordinates();
         prepare_arc_move(true);
         return;
       }
+      break;
     case 3: // G3  - CCW ARC
       if(Stopped == false) {
         get_arc_coordinates();
         prepare_arc_move(false);
         return;
       }
+      break;
     case 4: // G4 dwell
       LCD_MESSAGEPGM(MSG_DWELL);
       codenum = 0;
@@ -1273,7 +1296,12 @@ void process_commands()
         destination[X_AXIS] = 1.5 * max_length(X_AXIS) * x_axis_home_dir;destination[Y_AXIS] = 1.5 * max_length(Y_AXIS) * home_dir(Y_AXIS);
         feedrate = homing_feedrate[X_AXIS];
         if(homing_feedrate[Y_AXIS]<feedrate)
-          feedrate =homing_feedrate[Y_AXIS];
+          feedrate = homing_feedrate[Y_AXIS];
+        if (max_length(X_AXIS) > max_length(Y_AXIS)) {
+          feedrate *= sqrt(pow(max_length(Y_AXIS) / max_length(X_AXIS), 2) + 1);
+        } else {
+          feedrate *= sqrt(pow(max_length(X_AXIS) / max_length(Y_AXIS), 2) + 1);
+        }
         plan_buffer_line(destination[X_AXIS], destination[Y_AXIS], destination[Z_AXIS], destination[E_AXIS], feedrate/60, active_extruder);
         st_synchronize();
 
@@ -1778,7 +1806,7 @@ void process_commands()
         int pin_number = LED_PIN;
         if (code_seen('P') && pin_status >= 0 && pin_status <= 255)
           pin_number = code_value();
-        for(int8_t i = 0; i < (int8_t)sizeof(sensitive_pins); i++)
+        for(int8_t i = 0; i < (int8_t)(sizeof(sensitive_pins)/sizeof(int)); i++)
         {
           if (sensitive_pins[i] == pin_number)
           {
@@ -1808,6 +1836,9 @@ void process_commands()
         setTargetHotend1(code_value() == 0.0 ? 0.0 : code_value() + duplicate_extruder_temp_offset);
 #endif
       setWatch();
+      break;
+    case 112: //  M112 -Emergency Stop
+      kill();
       break;
     case 140: // M140 set bed temp
       if (code_seen('S')) setTargetBed(code_value());
@@ -2141,8 +2172,9 @@ void process_commands()
       }
       break;
     case 85: // M85
-      code_seen('S');
-      max_inactive_time = code_value() * 1000;
+      if(code_seen('S')) {
+        max_inactive_time = code_value() * 1000;
+      }
       break;
     case 92: // M92
       for(int8_t i=0; i < NUM_AXIS; i++)
@@ -2263,9 +2295,8 @@ void process_commands()
           if(tmp_extruder >= EXTRUDERS) {
             SERIAL_ECHO_START;
             SERIAL_ECHO(MSG_M200_INVALID_EXTRUDER);
+            break;
           }
-          SERIAL_ECHOLN(tmp_extruder);
-          break;
         }
         volumetric_multiplier[tmp_extruder] = 1 / area;
       }
@@ -2337,7 +2368,7 @@ void process_commands()
       break;
     #endif
     #ifdef FWRETRACT
-    case 207: //M207 - set retract length S[positive mm] F[feedrate mm/sec] Z[additional zlift/hop]
+    case 207: //M207 - set retract length S[positive mm] F[feedrate mm/min] Z[additional zlift/hop]
     {
       if(code_seen('S'))
       {
@@ -2345,14 +2376,14 @@ void process_commands()
       }
       if(code_seen('F'))
       {
-        retract_feedrate = code_value() ;
+        retract_feedrate = code_value()/60 ;
       }
       if(code_seen('Z'))
       {
         retract_zlift = code_value() ;
       }
     }break;
-    case 208: // M208 - set retract recover length S[positive mm surplus to the M207 S*] F[feedrate mm/sec]
+    case 208: // M208 - set retract recover length S[positive mm surplus to the M207 S*] F[feedrate mm/min]
     {
       if(code_seen('S'))
       {
@@ -2360,7 +2391,7 @@ void process_commands()
       }
       if(code_seen('F'))
       {
-        retract_recover_feedrate = code_value() ;
+        retract_recover_feedrate = code_value()/60 ;
       }
     }break;
     case 209: // M209 - S<1=true/0=false> enable automatic retract detect if the slicer did not support G10/11: every normal extrude-only move will be classified as retract depending on the direction.
@@ -2430,7 +2461,18 @@ void process_commands()
     {
       if(code_seen('S'))
       {
-        extrudemultiply = code_value() ;
+        int tmp_code = code_value();
+        if (code_seen('T'))
+        {
+          if(setTargetedHotend(221)){
+            break;
+          }
+          extruder_multiply[tmp_extruder] = tmp_code;
+        }
+        else
+        {
+          extrudemultiply = tmp_code ;
+        }
       }
     }
     break;
@@ -2445,7 +2487,7 @@ void process_commands()
 
         if(pin_state >= -1 && pin_state <= 1){
 
-          for(int8_t i = 0; i < (int8_t)sizeof(sensitive_pins); i++)
+          for(int8_t i = 0; i < (int8_t)(sizeof(sensitive_pins)/sizeof(int)); i++)
           {
             if (sensitive_pins[i] == pin_number)
             {
@@ -2598,23 +2640,33 @@ void process_commands()
     #endif //PIDTEMP
     case 240: // M240  Triggers a camera by emulating a Canon RC-1 : http://www.doc-diy.net/photo/rc-1_hacked/
      {
-      #if defined(PHOTOGRAPH_PIN) && PHOTOGRAPH_PIN > -1
-        const uint8_t NUM_PULSES=16;
-        const float PULSE_LENGTH=0.01524;
-        for(int i=0; i < NUM_PULSES; i++) {
-          WRITE(PHOTOGRAPH_PIN, HIGH);
-          _delay_ms(PULSE_LENGTH);
-          WRITE(PHOTOGRAPH_PIN, LOW);
-          _delay_ms(PULSE_LENGTH);
+     	#ifdef CHDK
+       
+         SET_OUTPUT(CHDK);
+         WRITE(CHDK, HIGH);
+         chdkHigh = millis();
+         chdkActive = true;
+       
+       #else
+     	
+      	#if defined(PHOTOGRAPH_PIN) && PHOTOGRAPH_PIN > -1
+	const uint8_t NUM_PULSES=16;
+	const float PULSE_LENGTH=0.01524;
+	for(int i=0; i < NUM_PULSES; i++) {
+        WRITE(PHOTOGRAPH_PIN, HIGH);
+        _delay_ms(PULSE_LENGTH);
+        WRITE(PHOTOGRAPH_PIN, LOW);
+        _delay_ms(PULSE_LENGTH);
         }
         delay(7.33);
         for(int i=0; i < NUM_PULSES; i++) {
-          WRITE(PHOTOGRAPH_PIN, HIGH);
-          _delay_ms(PULSE_LENGTH);
-          WRITE(PHOTOGRAPH_PIN, LOW);
-          _delay_ms(PULSE_LENGTH);
+        WRITE(PHOTOGRAPH_PIN, HIGH);
+        _delay_ms(PULSE_LENGTH);
+        WRITE(PHOTOGRAPH_PIN, LOW);
+        _delay_ms(PULSE_LENGTH);
         }
-      #endif
+      	#endif
+      #endif //chdk end if
      }
     break;
 #ifdef DOGLCD
@@ -2696,6 +2748,43 @@ void process_commands()
     }
     break;
     #endif
+
+    #ifdef CUSTOM_M_CODE_SET_Z_PROBE_OFFSET
+    case CUSTOM_M_CODE_SET_Z_PROBE_OFFSET:
+    {
+      float value;
+      if (code_seen('Z'))
+      {
+        value = code_value();
+        if ((Z_PROBE_OFFSET_RANGE_MIN <= value) && (value <= Z_PROBE_OFFSET_RANGE_MAX))
+        {
+          zprobe_zoffset = -value; // compare w/ line 278 of ConfigurationStore.cpp
+          SERIAL_ECHO_START;
+          SERIAL_ECHOLNPGM(MSG_ZPROBE_ZOFFSET " " MSG_OK);
+          SERIAL_PROTOCOLLN("");
+        }
+        else
+        {
+          SERIAL_ECHO_START;
+          SERIAL_ECHOPGM(MSG_ZPROBE_ZOFFSET);
+          SERIAL_ECHOPGM(MSG_Z_MIN);
+          SERIAL_ECHO(Z_PROBE_OFFSET_RANGE_MIN);
+          SERIAL_ECHOPGM(MSG_Z_MAX);
+          SERIAL_ECHO(Z_PROBE_OFFSET_RANGE_MAX);
+          SERIAL_PROTOCOLLN("");
+        }
+      }
+      else
+      {
+          SERIAL_ECHO_START;
+          SERIAL_ECHOLNPGM(MSG_ZPROBE_ZOFFSET " : ");
+          SERIAL_ECHO(-zprobe_zoffset);
+          SERIAL_PROTOCOLLN("");
+      }
+      break;
+    }
+    #endif // CUSTOM_M_CODE_SET_Z_PROBE_OFFSET
+
     #ifdef FILAMENTCHANGEENABLE
     case 600: //Pause for filament change X[pos] Y[pos] Z[relative lift] E[initial retract] L[later retract distance for removal]
     {
@@ -3026,7 +3115,16 @@ void process_commands()
         // Set the new active extruder and position
         active_extruder = tmp_extruder;
       #endif //else DUAL_X_CARRIAGE
+#ifdef DELTA 
+
+  calculate_delta(current_position); // change cartesian kinematic  to  delta kinematic;
+   //sent position to plan_set_position();
+  plan_set_position(delta[X_AXIS], delta[Y_AXIS], delta[Z_AXIS],current_position[E_AXIS]);
+            
+#else
         plan_set_position(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);
+
+#endif
         // Move to the old position if 'F' was in the parameters
         if(make_move && Stopped == false) {
            prepare_move();
@@ -3347,6 +3445,9 @@ void handle_status_leds(void) {
 
 void manage_inactivity()
 {
+  if(buflen < (BUFSIZE-1))
+    get_command();
+
   if( (millis() - previous_millis_cmd) >  max_inactive_time )
     if(max_inactive_time)
       kill();
@@ -3363,6 +3464,16 @@ void manage_inactivity()
       }
     }
   }
+  
+  #ifdef CHDK //Check if pin should be set to LOW after M240 set it to HIGH
+    if (chdkActive)
+    {
+      chdkActive = false;
+      if (millis()-chdkHigh < CHDK_DELAY) return;
+      WRITE(CHDK, LOW);
+    }
+  #endif
+  
   #if defined(KILL_PIN) && KILL_PIN > -1
     if( 0 == READ(KILL_PIN) )
       kill();
@@ -3529,6 +3640,9 @@ bool setTargetedHotend(int code){
           break;
         case 218:
           SERIAL_ECHO(MSG_M218_INVALID_EXTRUDER);
+          break;
+        case 221:
+          SERIAL_ECHO(MSG_M221_INVALID_EXTRUDER);
           break;
       }
       SERIAL_ECHOLN(tmp_extruder);

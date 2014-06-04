@@ -30,7 +30,7 @@
 
 //automatic temperature: The hot end target temperature is calculated by all the buffered lines of gcode.
 //The maximum buffered steps/sec of the extruder motor are called "se".
-//You enter the autotemp mode by a M109 S<mintemp> B<maxtemp> F<factor>
+//You enter the autotemp mode by a M109 S<mintemp> T<maxtemp> F<factor>
 // the target temperature is set to mintemp+factor*se[steps/sec] and limited by mintemp and maxtemp
 // you exit the value by any M109 without F*
 // Also, if the temperature is set to a value <mintemp, it is not changed by autotemp.
@@ -75,11 +75,10 @@
 // extruder temperature is above/below EXTRUDER_AUTO_FAN_TEMPERATURE.
 // Multiple extruders can be assigned to the same pin in which case
 // the fan will turn on when any selected extruder is above the threshold.
-#define EXTRUDER_0_AUTO_FAN_PIN   6
+#define EXTRUDER_0_AUTO_FAN_PIN   -1
 #define EXTRUDER_1_AUTO_FAN_PIN   -1
 #define EXTRUDER_2_AUTO_FAN_PIN   -1
-// M2: extruder fan also runs the electronics fan. Set to turn on at any reasonable temperature.
-#define EXTRUDER_AUTO_FAN_TEMPERATURE 35
+#define EXTRUDER_AUTO_FAN_TEMPERATURE 50
 #define EXTRUDER_AUTO_FAN_SPEED   255  // == full speed
 
 
@@ -216,7 +215,7 @@
 //homing hits the endstop, then retracts by this distance, before it tries to slowly bump again:
 #define X_HOME_RETRACT_MM 5
 #define Y_HOME_RETRACT_MM 5
-#define Z_HOME_RETRACT_MM 1
+#define Z_HOME_RETRACT_MM 2
 //#define QUICK_HOME  //if this is defined, if both x and y are to be homed, a diagonal move will be performed initially.
 
 #define AXIS_RELATIVE_MODES {false, false, false, false}
@@ -230,7 +229,7 @@
 #define INVERT_E_STEP_PIN false
 
 //default stepper release if idle
-#define DEFAULT_STEPPER_DEACTIVE_TIME 246
+#define DEFAULT_STEPPER_DEACTIVE_TIME 60
 
 #define DEFAULT_MINIMUMFEEDRATE       0.0     // minimum feedrate
 #define DEFAULT_MINTRAVELFEEDRATE     0.0
@@ -238,6 +237,11 @@
 // Feedrates for manual moves along X, Y, Z, E from panel
 #ifdef ULTIPANEL
 #define MANUAL_FEEDRATE {50*60, 50*60, 4*60, 60}  // set the speeds for manual moves (mm/min)
+#endif
+
+//Comment to disable setting feedrate multiplier via encoder
+#ifdef ULTIPANEL
+    #define ULTIPANEL_FEEDMULTIPLY
 #endif
 
 // minimum time in microseconds that a movement needs to take if the buffer is emptied.
@@ -267,15 +271,15 @@
 #define MICROSTEP_MODES {16,16,16,16,16} // [1,2,4,8,16]
 
 // Motor Current setting (Only functional when motor driver current ref pins are connected to a digital trimpot on supported boards)
-//#define DIGIPOT_MOTOR_CURRENT {135,135,135,135,135} // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
-#define DIGIPOT_MOTOR_CURRENT {135,135,135,165,125} // MakerGear M2
+#define DIGIPOT_MOTOR_CURRENT {135,135,135,135,135} // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 
 // uncomment to enable an I2C based DIGIPOT like on the Azteeg X3 Pro
 //#define DIGIPOT_I2C
 // Number of channels available for I2C digipot, For Azteeg X3 Pro we have 8
-#define DIGIPOT_I2C_NUM_CHANNELS 8
+#define DIGIPOT_I2C_NUM_CHANNELS 4
 // actual motor currents in Amps, need as many here as DIGIPOT_I2C_NUM_CHANNELS
-#define DIGIPOT_I2C_MOTOR_CURRENTS {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0}
+//#define DIGIPOT_I2C_MOTOR_CURRENTS {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0}
+#define DIGIPOT_I2C_MOTOR_CURRENTS {1.7, 1.7, 1.7, 1.7}
 
 //===========================================================================
 //=============================Additional Features===========================
@@ -354,7 +358,7 @@ const unsigned int dropsegments=5; //everything with less than this number of st
 // You can get round this by connecting a push button or single throw switch to the pin defined as SDCARDCARDDETECT
 // in the pins.h file.  When using a push button pulling the pin to ground this will need inverted.  This setting should
 // be commented out otherwise
-#define SDCARDDETECTINVERTED
+//#define SDCARDDETECTINVERTED
 
 #ifdef ULTIPANEL
  #undef SDCARDDETECTINVERTED
