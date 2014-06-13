@@ -302,6 +302,9 @@ const bool Z_MAX_ENDSTOP_INVERTING = true;  // set to true to invert the logic o
 //#define DISABLE_MAX_ENDSTOPS
 // Deltas never have min endstops
 #define DISABLE_MIN_ENDSTOPS
+
+const bool DISABLE_INACTIVE_EXTRUDER = false;
+
 // Disable max endstops for compatibility with endstop checking routine
 #if defined(COREXY) && !defined(DISABLE_MAX_ENDSTOPS)
   #define DISABLE_MAX_ENDSTOPS
