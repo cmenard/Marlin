@@ -107,6 +107,9 @@
 
 // Center-to-center distance of the holes in the diagonal push rods.
 #define DELTA_DIAGONAL_ROD 215.5 // mm
+    // 215.5 mm as measured
+    // Lowering this number makes the hot-end raise in the middle
+    // If your print head is too high or low in the middle of the print surface, adjust DELTA_SMOOTH_ROD_OFFSET by half mm and try again.
 
 // Horizontal offset from middle of printer to smooth rod center.
 #define DELTA_SMOOTH_ROD_OFFSET 156.6 // mm
@@ -129,6 +132,13 @@
 #define DELTA_TOWER3_Y -COS_60*DELTA_RADIUS
 #define DELTA_TOWER2_X 0.0                    // back middle tower
 #define DELTA_TOWER2_Y DELTA_RADIUS
+
+// DELTA_TOWER1_X	-99.46
+// DELTA_TOWER1_Y	-57.43
+// DELTA_TOWER3_X	 99.46
+// DELTA_TOWER3_Y	-57.43
+// DELTA_TOWER2_X	  0.00
+// DELTA_TOWER2_Y	114.85
 
 //===========================================================================
 //=============================Thermal Settings  ============================
@@ -414,7 +424,7 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 // For deltabots this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 115.0  // For delta: Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 120.0  // For delta: Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
