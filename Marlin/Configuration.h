@@ -128,17 +128,18 @@
 #define COS_60 0.5
 #define DELTA_TOWER1_X -SIN_60*DELTA_RADIUS   // front left tower
 #define DELTA_TOWER1_Y -COS_60*DELTA_RADIUS
-#define DELTA_TOWER3_X SIN_60*DELTA_RADIUS    // front right tower
-#define DELTA_TOWER3_Y -COS_60*DELTA_RADIUS
-#define DELTA_TOWER2_X 0.0                    // back middle tower
-#define DELTA_TOWER2_Y DELTA_RADIUS
+#define DELTA_TOWER2_X SIN_60*DELTA_RADIUS    // front right tower
+#define DELTA_TOWER2_Y -COS_60*DELTA_RADIUS
+#define DELTA_TOWER3_X 0.0                    // back middle tower
+#define DELTA_TOWER3_Y DELTA_RADIUS
 
 // DELTA_TOWER1_X	-99.46
 // DELTA_TOWER1_Y	-57.43
-// DELTA_TOWER3_X	 99.46
-// DELTA_TOWER3_Y	-57.43
-// DELTA_TOWER2_X	  0.00
-// DELTA_TOWER2_Y	114.85
+// DELTA_TOWER2_X	 99.46
+// DELTA_TOWER2_Y	-57.43
+// DELTA_TOWER3_X	  0.00
+// DELTA_TOWER3_Y	114.85
+
 
 //===========================================================================
 //=============================Thermal Settings  ============================
@@ -420,11 +421,11 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 
 //Manual homing switch locations:
 
-#define MANUAL_HOME_POSITIONS  // MANUAL_*_HOME_POS below will be used
+#define MANUAL_HOME_POSITIONS    // MANUAL_*_HOME_POS below will be used
 // For deltabots this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 120.0  // For delta: Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 114.9  // For delta: Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
