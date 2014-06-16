@@ -437,12 +437,12 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 // delta speeds must be the same on xyz
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {55.5, 55.5, 55.5, 471.5}  // default steps per unit for Kossel (GT2, 20 tooth)
 #define DEFAULT_MAX_FEEDRATE          {500, 500, 500, 25}        // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {750, 750, 750, 10000}     // X, Y, Z, E maximum start speed for accelerated moves.
+#define DEFAULT_MAX_ACCELERATION      {500, 500, 500, 10000}     // X, Y, Z, E maximum start speed for accelerated moves.
                                                                  // E default values are good for skeinforge 40+,
                                                                  // for older versions raise them a lot.
 
-#define DEFAULT_ACCELERATION          500   // was 380    X, Y, Z and E max acceleration in mm/s^2 for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  500   // was 380    X, Y, Z and E max acceleration in mm/s^2 for retracts
+#define DEFAULT_ACCELERATION          380   // was 380    X, Y, Z and E max acceleration in mm/s^2 for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  380   // was 380    X, Y, Z and E max acceleration in mm/s^2 for retracts
 
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).
 // The offset has to be X=0, Y=0 for the extruder 0 hotend (default extruder).
