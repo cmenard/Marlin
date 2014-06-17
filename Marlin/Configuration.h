@@ -106,7 +106,7 @@
 // NOTE NB all values for DELTA_* values MOUST be floating point, so always have a decimal point in them
 
 // Center-to-center distance of the holes in the diagonal push rods.
-#define DELTA_DIAGONAL_ROD 215.5 // mm
+#define DELTA_DIAGONAL_ROD 217.0 // mm
     // 215.5 mm as measured
     // Lowering this number makes the hot-end raise in the middle
     // If your print head is too high or low in the middle of the print surface, adjust DELTA_SMOOTH_ROD_OFFSET by half mm and try again.
@@ -425,7 +425,7 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 // For deltabots this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 114.9  // For delta: Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 115.8  // For delta: Distance between nozzle and print surface after homing.
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
@@ -436,7 +436,7 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 // default settings
 // delta speeds must be the same on xyz
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {55.5, 55.5, 55.5, 471.5}  // default steps per unit for Kossel (GT2, 20 tooth)
-#define DEFAULT_MAX_FEEDRATE          {500, 500, 500, 25}        // (mm/sec)
+#define DEFAULT_MAX_FEEDRATE          {380, 380, 380, 25}        // (mm/sec)
 #define DEFAULT_MAX_ACCELERATION      {500, 500, 500, 10000}     // X, Y, Z, E maximum start speed for accelerated moves.
                                                                  // E default values are good for skeinforge 40+,
                                                                  // for older versions raise them a lot.

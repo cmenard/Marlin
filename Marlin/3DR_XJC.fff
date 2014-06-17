@@ -24,25 +24,25 @@
   <bottomSolidLayers>4</bottomSolidLayers>
   <perimeterOutlines>2</perimeterOutlines>
   <printPerimetersInsideOut>0</printPerimetersInsideOut>
-  <startPointOption>1</startPointOption>
+  <startPointOption>2</startPointOption>
   <startPointOriginX>0</startPointOriginX>
   <startPointOriginY>0</startPointOriginY>
   <startPointOriginZ>300</startPointOriginZ>
   <sequentialIslands>0</sequentialIslands>
   <spiralVaseMode>0</spiralVaseMode>
   <firstLayerHeightRatio>0.9</firstLayerHeightRatio>
-  <firstLayerUnderspeed>0.5</firstLayerUnderspeed>
-  <useRaft>1</useRaft>
-  <raftLayers>3</raftLayers>
+  <firstLayerUnderspeed>0.6</firstLayerUnderspeed>
+  <useRaft>0</useRaft>
+  <raftLayers>1</raftLayers>
   <raftOffset>3</raftOffset>
   <raftInfill>50</raftInfill>
   <useSkirt>1</useSkirt>
-  <skirtLayers>3</skirtLayers>
+  <skirtLayers>2</skirtLayers>
   <skirtOutlines>2</skirtOutlines>
   <skirtOffset>4</skirtOffset>
   <infillExtruder>0</infillExtruder>
   <externalInfillPattern>Rectilinear</externalInfillPattern>
-  <infillPercentage>35</infillPercentage>
+  <infillPercentage>30</infillPercentage>
   <outlineOverlapPercentage>15</outlineOverlapPercentage>
   <minInfillLength>5</minInfillLength>
   <infillLayerInterval>1</infillLayerInterval>
@@ -104,7 +104,7 @@
   <flipXoverride>1</flipXoverride>
   <flipYoverride>-1</flipYoverride>
   <flipZoverride>1</flipZoverride>
-  <startingGcode>G28 ; home all axes,M106 S255  ; full fan</startingGcode>
+  <startingGcode>G28 ; home all axes,M106 S255  ; full fan,G0 E10 ; get plastic flowing</startingGcode>
   <layerChangeGcode></layerChangeGcode>
   <toolChangeGcode></toolChangeGcode>
   <endingGcode>M104 S0 ; turn off extruder,M140 S0 ; turn off bed,G28 ; home axes,M84 ; disable motors</endingGcode>
@@ -138,49 +138,4 @@
   <useRetractionOozeRate>0</useRetractionOozeRate>
   <retractionOozeRate>100</retractionOozeRate>
   <onlyWipeOutlines>1</onlyWipeOutlines>
-  <autoConfigureMaterial name="PLA">
-  </autoConfigureMaterial>
-  <autoConfigureMaterial name="ABS">
-    <globalExtruderTemperature>225</globalExtruderTemperature>
-    <globalBedTemperature>100</globalBedTemperature>
-    <globalExtrusionMultiplier>1.0</globalExtrusionMultiplier>
-    <fanSpeed>
-      <setpoint layer="1" speed="0"/>
-    </fanSpeed>
-  </autoConfigureMaterial>
-  <autoConfigureMaterial name="PVA">
-    <globalExtruderTemperature>195</globalExtruderTemperature>
-    <globalBedTemperature>80</globalBedTemperature>
-    <globalExtrusionMultiplier>1.0</globalExtrusionMultiplier>
-    <fanSpeed>
-      <setpoint layer="1" speed="0"/>
-      <setpoint layer="1" speed="100"/>
-    </fanSpeed>
-  </autoConfigureMaterial>
-  <autoConfigureMaterial name="Nylon">
-    <globalExtruderTemperature>220</globalExtruderTemperature>
-    <globalBedTemperature>80</globalBedTemperature>
-    <globalExtrusionMultiplier>1.0</globalExtrusionMultiplier>
-    <fanSpeed>
-      <setpoint layer="1" speed="0"/>
-    </fanSpeed>
-  </autoConfigureMaterial>
-  <autoConfigureQuality name="Fast">
-    <layerHeight>0.3</layerHeight>
-    <topSolidLayers>3</topSolidLayers>
-    <bottomSolidLayers>3</bottomSolidLayers>
-    <skirtLayers>1</skirtLayers>
-    <infillPercentage>15</infillPercentage>
-    <supportInfill>25</supportInfill>
-  </autoConfigureQuality>
-  <autoConfigureQuality name="Medium">
-  </autoConfigureQuality>
-  <autoConfigureQuality name="High">
-    <layerHeight>0.1</layerHeight>
-    <topSolidLayers>4</topSolidLayers>
-    <bottomSolidLayers>4</bottomSolidLayers>
-    <skirtLayers>2</skirtLayers>
-    <infillPercentage>30</infillPercentage>
-    <supportInfill>40</supportInfill>
-  </autoConfigureQuality>
 </profile>
