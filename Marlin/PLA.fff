@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<profile name="3DR_XJC">
-  <printMaterial>PLA</printMaterial>
-  <printQuality>Medium</printQuality>
+<profile name="PLA">
+  <printMaterial></printMaterial>
+  <printQuality></printQuality>
   <extruder name="Primary Extruder">
     <toolheadNumber>0</toolheadNumber>
     <diameter>0.35</diameter>
-    <autoWidth>1</autoWidth>
-    <width>0.42</width>
-    <extrusionMultiplier>0.9</extrusionMultiplier>
+    <autoWidth>0</autoWidth>
+    <width>0.35</width>
+    <extrusionMultiplier>0.8</extrusionMultiplier>
     <useRetract>1</useRetract>
-    <retractionDistance>8.4</retractionDistance>
+    <retractionDistance>5</retractionDistance>
     <extraRestartDistance>0</extraRestartDistance>
-    <retractionZLift>0.1</retractionZLift>
-    <retractionSpeed>3600</retractionSpeed>
+    <retractionZLift>3</retractionZLift>
+    <retractionSpeed>1600</retractionSpeed>
     <useCoasting>1</useCoasting>
-    <coastingDistance>1</coastingDistance>
-    <useWipe>0</useWipe>
-    <wipeDistance>5</wipeDistance>
+    <coastingDistance>2</coastingDistance>
+    <useWipe>1</useWipe>
+    <wipeDistance>2</wipeDistance>
   </extruder>
   <primaryExtruder>0</primaryExtruder>
   <layerHeight>0.15</layerHeight>
@@ -28,36 +28,38 @@
   <startPointOriginX>0</startPointOriginX>
   <startPointOriginY>0</startPointOriginY>
   <startPointOriginZ>300</startPointOriginZ>
-  <sequentialIslands>0</sequentialIslands>
+  <sequentialIslands>1</sequentialIslands>
   <spiralVaseMode>0</spiralVaseMode>
-  <firstLayerHeightRatio>0.9</firstLayerHeightRatio>
-  <firstLayerUnderspeed>0.6</firstLayerUnderspeed>
-  <useRaft>0</useRaft>
+  <firstLayerHeightRatio>1.5</firstLayerHeightRatio>
+  <firstLayerUnderspeed>0.25</firstLayerUnderspeed>
+  <useRaft>1</useRaft>
   <raftLayers>1</raftLayers>
   <raftOffset>3</raftOffset>
-  <raftInfill>50</raftInfill>
+  <raftSeparationDistance>0.14</raftSeparationDistance>
+  <raftInfill>40</raftInfill>
+  <disableRaftBaseLayers>0</disableRaftBaseLayers>
   <useSkirt>1</useSkirt>
   <skirtLayers>2</skirtLayers>
   <skirtOutlines>2</skirtOutlines>
-  <skirtOffset>4</skirtOffset>
+  <skirtOffset>5</skirtOffset>
   <infillExtruder>0</infillExtruder>
   <externalInfillPattern>Rectilinear</externalInfillPattern>
-  <infillPercentage>30</infillPercentage>
-  <outlineOverlapPercentage>15</outlineOverlapPercentage>
-  <minInfillLength>5</minInfillLength>
+  <infillPercentage>40</infillPercentage>
+  <outlineOverlapPercentage>5</outlineOverlapPercentage>
+  <minInfillLength>1</minInfillLength>
   <infillLayerInterval>1</infillLayerInterval>
   <randomInfillStartPoint>0</randomInfillStartPoint>
   <infillAngles>45,-45</infillAngles>
-  <generateSupport>0</generateSupport>
+  <generateSupport>1</generateSupport>
   <supportExtruder>0</supportExtruder>
-  <supportInfill>40</supportInfill>
-  <supportExtraInflation>0</supportExtraInflation>
+  <supportInfill>30</supportInfill>
+  <supportExtraInflation>0.3</supportExtraInflation>
   <supportLayerInterval>1</supportLayerInterval>
   <supportHorizontalPartOffset>0.3</supportHorizontalPartOffset>
   <supportUpperSeparationLayers>1</supportUpperSeparationLayers>
   <supportLowerSeparationLayers>1</supportLowerSeparationLayers>
   <supportGridSpacing>3</supportGridSpacing>
-  <maxOverhangAngle>45</maxOverhangAngle>
+  <maxOverhangAngle>53</maxOverhangAngle>
   <supportAngles>0</supportAngles>
   <temperatureController name="Primary Extruder">
     <temperatureNumber>0</temperatureNumber>
@@ -104,7 +106,7 @@
   <flipXoverride>1</flipXoverride>
   <flipYoverride>-1</flipYoverride>
   <flipZoverride>1</flipZoverride>
-  <startingGcode>G28 ; home all axes,M106 S255  ; full fan,G0 E10 ; get plastic flowing</startingGcode>
+  <startingGcode>G28 ; home all axes,M106 S255  ; full fan,</startingGcode>
   <layerChangeGcode></layerChangeGcode>
   <toolChangeGcode></toolChangeGcode>
   <endingGcode>M104 S0 ; turn off extruder,M140 S0 ; turn off bed,G28 ; home axes,M84 ; disable motors</endingGcode>
@@ -112,15 +114,16 @@
   <celebration>0</celebration>
   <celebrationSong>Random Song</celebrationSong>
   <postProcessing></postProcessing>
-  <defaultSpeed>3000</defaultSpeed>
-  <outlineUnderspeed>0.5</outlineUnderspeed>
+  <defaultSpeed>2000</defaultSpeed>
+  <outlineUnderspeed>0.8</outlineUnderspeed>
   <supportUnderspeed>0.8</supportUnderspeed>
-  <rapidXYspeed>9000</rapidXYspeed>
-  <rapidZspeed>1200</rapidZspeed>
+  <rapidXYspeed>3000</rapidXYspeed>
+  <rapidZspeed>3000</rapidZspeed>
   <minBridgingArea>50</minBridgingArea>
   <bridgingExtrusionMultiplier>0.95</bridgingExtrusionMultiplier>
   <bridgingSpeedMultiplier>0.7</bridgingSpeedMultiplier>
   <filamentDiameter>1.75</filamentDiameter>
+  <filamentPricePerKg>27</filamentPricePerKg>
   <useMinPrintHeight>0</useMinPrintHeight>
   <minPrintHeight>0</minPrintHeight>
   <useMaxPrintHeight>0</useMaxPrintHeight>
@@ -133,8 +136,8 @@
   <mergeAllIntoSolid>0</mergeAllIntoSolid>
   <onlyRetractWhenCrossingOutline>1</onlyRetractWhenCrossingOutline>
   <retractBetweenLayers>1</retractBetweenLayers>
-  <useRetractionMinTravel>0</useRetractionMinTravel>
-  <retractionMinTravel>3</retractionMinTravel>
+  <useRetractionMinTravel>1</useRetractionMinTravel>
+  <retractionMinTravel>5</retractionMinTravel>
   <useRetractionOozeRate>0</useRetractionOozeRate>
   <retractionOozeRate>100</retractionOozeRate>
   <onlyWipeOutlines>1</onlyWipeOutlines>

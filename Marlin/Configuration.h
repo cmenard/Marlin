@@ -106,7 +106,7 @@
 // NOTE NB all values for DELTA_* values MOUST be floating point, so always have a decimal point in them
 
 // Center-to-center distance of the holes in the diagonal push rods.
-#define DELTA_DIAGONAL_ROD 217.0 // mm
+#define DELTA_DIAGONAL_ROD 217.5 // mm
     // 215.5 mm as measured
     // Lowering this number makes the hot-end raise in the middle
     // If your print head is too high or low in the middle of the print surface, adjust DELTA_SMOOTH_ROD_OFFSET by half mm and try again.
@@ -337,9 +337,10 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 #define INVERT_Y_DIR false
 #define INVERT_Z_DIR false
 
-#define INVERT_E0_DIR true    // for direct drive extruder v9 set to true, for geared extruder set to false
-#define INVERT_E1_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
-#define INVERT_E2_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
+// for direct drive extruder v9 set to true, for geared extruder set to false
+#define INVERT_E0_DIR true
+#define INVERT_E1_DIR false
+#define INVERT_E2_DIR false
 
 // ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
@@ -348,8 +349,10 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 #define Y_HOME_DIR 1
 #define Z_HOME_DIR 1
 
-#define min_software_endstops true // If true, axis won't move to coordinates less than HOME_POS.
-#define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.
+// If true, axis won't move to coordinates less than HOME_POS.
+#define min_software_endstops true
+// If true, axis won't move to coordinates greater than the defined lengths below.
+#define max_software_endstops true
 
 // Travel limits after homing
 #define X_MAX_POS 125
@@ -422,10 +425,12 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 //Manual homing switch locations:
 
 #define MANUAL_HOME_POSITIONS    // MANUAL_*_HOME_POS below will be used
-// For deltabots this means top and center of the cartesian print volume.
+
+// For delta: this means top and center of the cartesian print volume.
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
-#define MANUAL_Z_HOME_POS 115.8  // For delta: Distance between nozzle and print surface after homing.
+// For delta: Distance between nozzle and print surface after homing.
+#define MANUAL_Z_HOME_POS 116.1
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
