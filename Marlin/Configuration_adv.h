@@ -61,8 +61,8 @@
 //This is for controlling a fan to cool down the stepper drivers
 //it will turn on when any driver is enabled
 //and turn off after the set amount of seconds from last driver being disabled again
-#define CONTROLLERFAN_PIN -1 //Pin used for the fan to cool controller (-1 to disable)
-#define CONTROLLERFAN_SECS 60 //How many seconds, after all motors were disabled, the fan should run
+#define CONTROLLERFAN_PIN    -1  // Pin used for the fan to cool controller (-1 to disable)
+#define CONTROLLERFAN_SECS   60  // How many seconds, after all motors were disabled, the fan should run
 #define CONTROLLERFAN_SPEED 255  // == full speed
 
 // When first starting the main fan, run it at full speed for the
@@ -75,11 +75,11 @@
 // extruder temperature is above/below EXTRUDER_AUTO_FAN_TEMPERATURE.
 // Multiple extruders can be assigned to the same pin in which case 
 // the fan will turn on when any selected extruder is above the threshold.
-#define EXTRUDER_0_AUTO_FAN_PIN    6
-#define EXTRUDER_1_AUTO_FAN_PIN   -1
-#define EXTRUDER_2_AUTO_FAN_PIN   -1
-#define EXTRUDER_AUTO_FAN_TEMPERATURE 50
-#define EXTRUDER_AUTO_FAN_SPEED   255  // == full speed
+#define EXTRUDER_0_AUTO_FAN_PIN         8
+#define EXTRUDER_1_AUTO_FAN_PIN        -1
+#define EXTRUDER_2_AUTO_FAN_PIN        -1
+#define EXTRUDER_AUTO_FAN_TEMPERATURE  50
+#define EXTRUDER_AUTO_FAN_SPEED       255  // == full speed
 
 
 //===========================================================================
@@ -135,7 +135,6 @@
 #endif //End auto min/max positions
 //END AUTOSET LOCATIONS OF LIMIT SWITCHES -ZP
 
-
 //#define Z_LATE_ENABLE // Enable Z the last moment. Needed if your Z driver overheats.
 
 // A single Z stepper driver is usually used to drive 2 stepper motors.
@@ -174,9 +173,9 @@
 // Configuration for second X-carriage
 // Note: the first x-carriage is defined as the x-carriage which homes to the minimum endstop;
 // the second x-carriage always homes to the maximum endstop.
-#define X2_MIN_POS 80     // set minimum to ensure second x-carriage doesn't hit the parked first X-carriage
-#define X2_MAX_POS 353    // set maximum to the distance between toolheads when both heads are homed 
-#define X2_HOME_DIR 1     // the second X-carriage always homes to the maximum endstop position
+#define X2_MIN_POS   80    // set minimum to ensure second x-carriage doesn't hit the parked first X-carriage
+#define X2_MAX_POS  353    // set maximum to the distance between toolheads when both heads are homed 
+#define X2_HOME_DIR   1    // the second X-carriage always homes to the maximum endstop position
 #define X2_HOME_POS X2_MAX_POS // default home position is the maximum carriage position 
     // However: In this mode the EXTRUDER_OFFSET_X value for the second extruder provides a software 
     // override for X2_HOME_POS. This also allow recalibration of the distance between the two endstops
@@ -185,8 +184,8 @@
 
 // Pins for second x-carriage stepper driver (defined here to avoid further complicating pins.h)
 #define X2_ENABLE_PIN 29
-#define X2_STEP_PIN 25
-#define X2_DIR_PIN 23
+#define X2_STEP_PIN   25
+#define X2_DIR_PIN    23
 
 // There are a few selectable movement modes for dual x-carriages using M605 S<mode>
 //    Mode 0: Full control. The slicer has full control over both x-carriages and can achieve optimal travel results
@@ -258,10 +257,10 @@
 #define MINIMUM_PLANNER_SPEED 0.05// (mm/sec)
 
 // MS1 MS2 Stepper Driver Microstepping mode table
-#define MICROSTEP1 LOW,LOW
-#define MICROSTEP2 HIGH,LOW
-#define MICROSTEP4 LOW,HIGH
-#define MICROSTEP8 HIGH,HIGH
+#define MICROSTEP1  LOW,LOW
+#define MICROSTEP2  HIGH,LOW
+#define MICROSTEP4  LOW,HIGH
+#define MICROSTEP8  HIGH,HIGH
 #define MICROSTEP16 HIGH,HIGH
 
 // Microstep setting (Only functional when stepper driver microstep pins are connected to MCU.
@@ -377,7 +376,7 @@ const unsigned int dropsegments=5; //everything with less than this number of st
 //#define HEATERS_PARALLEL
 
 //===========================================================================
-//=============================Buffers           ============================
+//=============================  Buffers         ============================
 //===========================================================================
 
 // The number of linear motions that can be in the plan at any give time.  
@@ -388,11 +387,9 @@ const unsigned int dropsegments=5; //everything with less than this number of st
   #define BLOCK_BUFFER_SIZE 16 // maximize block buffer
 #endif
 
-
 //The ASCII buffer for recieving from the serial:
 #define MAX_CMD_SIZE 96
 #define BUFSIZE 4
-
 
 // Firmware based and LCD controled retract
 // M207 and M208 can be used to define parameters for the retraction. 
@@ -402,7 +399,6 @@ const unsigned int dropsegments=5; //everything with less than this number of st
 
 // #define FWRETRACT  //ONLY PARTIALLY TESTED
 #define MIN_RETRACT 0.1 //minimum extruded mm to accept a automatic gcode retraction attempt
-
 
 //adds support for experimental filament exchange support M600; requires display
 #ifdef ULTIPANEL
