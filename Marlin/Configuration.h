@@ -635,6 +635,12 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 # endif
 #endif
 
+// MakerGear 3DR Custom Fan Settings
+// If using a 24V fan (#define Fan_3DR_24v)
+// If using a 12V fan (#define Fan_3DR_12v)
+//#define Fan_3DR_24v
+#define Fan_3DR_12v
+
 // Increase the FAN pwm frequency. Removes the PWM noise but increases heating in the FET/Arduino
 //#define FAST_PWM_FAN
 

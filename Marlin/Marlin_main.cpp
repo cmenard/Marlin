@@ -2037,14 +2037,14 @@ void process_commands()
     #if defined(FAN_PIN) && FAN_PIN > -1
       case 106: //M106 Fan On
         if (code_seen('S')){
-			#if defined(3DR_24v_Fan) 
+			#if defined(Fan_3DR_24v) 
 				fanSpeed=constrain(code_value(),0,255);
 			#else
 				fanSpeed=constrain(code_value(),0,155);
 			#endif
         }
         else {
-			#if defined(3DR_24v_Fan)
+			#if defined(Fan_3DR_24v)
 				fanSpeed=255;
 			#else
 				fanSpeed=127;
