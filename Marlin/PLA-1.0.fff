@@ -19,7 +19,7 @@
     <wipeDistance>2</wipeDistance>
   </extruder>
   <primaryExtruder>0</primaryExtruder>
-  <layerHeight>0.1</layerHeight>
+  <layerHeight>0.15</layerHeight>
   <topSolidLayers>4</topSolidLayers>
   <bottomSolidLayers>4</bottomSolidLayers>
   <perimeterOutlines>2</perimeterOutlines>
@@ -30,13 +30,13 @@
   <startPointOriginZ>300</startPointOriginZ>
   <sequentialIslands>1</sequentialIslands>
   <spiralVaseMode>0</spiralVaseMode>
-  <firstLayerHeightRatio>1</firstLayerHeightRatio>
-  <firstLayerUnderspeed>0.5</firstLayerUnderspeed>
+  <firstLayerHeightRatio>1.5</firstLayerHeightRatio>
+  <firstLayerUnderspeed>0.25</firstLayerUnderspeed>
   <useRaft>1</useRaft>
   <raftLayers>1</raftLayers>
   <raftOffset>3</raftOffset>
   <raftSeparationDistance>0.14</raftSeparationDistance>
-  <raftInfill>40</raftInfill>
+  <raftInfill>30</raftInfill>
   <disableRaftBaseLayers>0</disableRaftBaseLayers>
   <useSkirt>1</useSkirt>
   <skirtLayers>2</skirtLayers>
@@ -44,7 +44,7 @@
   <skirtOffset>5</skirtOffset>
   <infillExtruder>0</infillExtruder>
   <externalInfillPattern>Rectilinear</externalInfillPattern>
-  <infillPercentage>40</infillPercentage>
+  <infillPercentage>35</infillPercentage>
   <outlineOverlapPercentage>5</outlineOverlapPercentage>
   <minInfillLength>1</minInfillLength>
   <infillLayerInterval>1</infillLayerInterval>
@@ -55,12 +55,12 @@
   <supportInfill>30</supportInfill>
   <supportExtraInflation>0.3</supportExtraInflation>
   <supportLayerInterval>1</supportLayerInterval>
-  <supportHorizontalPartOffset>0.3</supportHorizontalPartOffset>
+  <supportHorizontalPartOffset>0.1</supportHorizontalPartOffset>
   <supportUpperSeparationLayers>1</supportUpperSeparationLayers>
   <supportLowerSeparationLayers>1</supportLowerSeparationLayers>
   <supportGridSpacing>3</supportGridSpacing>
   <maxOverhangAngle>53</maxOverhangAngle>
-  <supportAngles>0</supportAngles>
+  <supportAngles>45,135</supportAngles>
   <temperatureController name="Primary Extruder">
     <temperatureNumber>0</temperatureNumber>
     <isHeatedBed>0</isHeatedBed>
@@ -70,7 +70,8 @@
     <setpoint layer="1" temperature="215"/>
   </temperatureController>
   <fanSpeed>
-    <setpoint layer="1" speed="100"/>
+    <setpoint layer="1" speed="50"/>
+    <setpoint layer="4" speed="100"/>
   </fanSpeed>
   <blipFanToFullPower>1</blipFanToFullPower>
   <adjustSpeedForCooling>1</adjustSpeedForCooling>
@@ -141,62 +142,4 @@
   <useRetractionOozeRate>0</useRetractionOozeRate>
   <retractionOozeRate>100</retractionOozeRate>
   <onlyWipeOutlines>1</onlyWipeOutlines>
-  <autoConfigureMaterial name="PLA">
-    <globalExtruderTemperature>190</globalExtruderTemperature>
-    <globalBedTemperature>60</globalBedTemperature>
-    <globalExtrusionMultiplier>0.9</globalExtrusionMultiplier>
-    <fanSpeed>
-      <setpoint layer="1" speed="0"/>
-      <setpoint layer="2" speed="100"/>
-    </fanSpeed>
-  </autoConfigureMaterial>
-  <autoConfigureMaterial name="ABS">
-    <globalExtruderTemperature>225</globalExtruderTemperature>
-    <globalBedTemperature>100</globalBedTemperature>
-    <globalExtrusionMultiplier>1.0</globalExtrusionMultiplier>
-    <fanSpeed>
-      <setpoint layer="1" speed="0"/>
-    </fanSpeed>
-  </autoConfigureMaterial>
-  <autoConfigureMaterial name="PVA">
-    <globalExtruderTemperature>195</globalExtruderTemperature>
-    <globalBedTemperature>80</globalBedTemperature>
-    <globalExtrusionMultiplier>1.0</globalExtrusionMultiplier>
-    <fanSpeed>
-      <setpoint layer="1" speed="0"/>
-      <setpoint layer="2" speed="100"/>
-    </fanSpeed>
-  </autoConfigureMaterial>
-  <autoConfigureMaterial name="Nylon">
-    <globalExtruderTemperature>220</globalExtruderTemperature>
-    <globalBedTemperature>80</globalBedTemperature>
-    <globalExtrusionMultiplier>1.0</globalExtrusionMultiplier>
-    <fanSpeed>
-      <setpoint layer="1" speed="0"/>
-    </fanSpeed>
-  </autoConfigureMaterial>
-  <autoConfigureQuality name="Fast">
-    <layerHeight>0.3</layerHeight>
-    <topSolidLayers>3</topSolidLayers>
-    <bottomSolidLayers>3</bottomSolidLayers>
-    <skirtLayers>1</skirtLayers>
-    <infillPercentage>15</infillPercentage>
-    <supportInfill>25</supportInfill>
-  </autoConfigureQuality>
-  <autoConfigureQuality name="Medium">
-    <layerHeight>0.2</layerHeight>
-    <topSolidLayers>3</topSolidLayers>
-    <bottomSolidLayers>3</bottomSolidLayers>
-    <skirtLayers>1</skirtLayers>
-    <infillPercentage>20</infillPercentage>
-    <supportInfill>30</supportInfill>
-  </autoConfigureQuality>
-  <autoConfigureQuality name="High">
-    <layerHeight>0.1</layerHeight>
-    <topSolidLayers>4</topSolidLayers>
-    <bottomSolidLayers>4</bottomSolidLayers>
-    <skirtLayers>2</skirtLayers>
-    <infillPercentage>30</infillPercentage>
-    <supportInfill>40</supportInfill>
-  </autoConfigureQuality>
 </profile>
