@@ -106,7 +106,7 @@
 // NOTE NB all values for DELTA_* values MOUST be floating point, so always have a decimal point in them
 
 // Center-to-center distance of the holes in the diagonal push rods.
-#define DELTA_DIAGONAL_ROD 217.5 // mm
+#define DELTA_DIAGONAL_ROD 215.5 // mm
     // 215.5 mm as measured
     // Lowering this number makes the hot-end raise in the middle
     // If your print head is too high or low in the middle of the print surface, adjust DELTA_SMOOTH_ROD_OFFSET by half mm and try again.
@@ -173,7 +173,7 @@
 #define TEMP_SENSOR_0 1
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 1
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
@@ -211,29 +211,29 @@
 #define BANG_MAX 255 // limits current to nozzle while in bang-bang mode; 255=full current
 #define PID_MAX  255 // limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #ifdef PIDTEMP
-//#define PID_DEBUG       // Sends debug data to the serial port.
-//#define PID_OPENLOOP 1  // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
-#define PID_FUNCTIONAL_RANGE 10  // If the temperature difference between the target temperature and the actual temperature is more
+  //#define PID_DEBUG       // Sends debug data to the serial port.
+  //#define PID_OPENLOOP 1  // Puts PID in open loop. M104/M140 sets the output power from 0 to PID_MAX
+  #define PID_FUNCTIONAL_RANGE 10  // If the temperature difference between the target temperature and the actual temperature is more
                                  // then PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
-#define PID_INTEGRAL_DRIVE_MAX 255  //limit for the integral term
-#define K1 0.95  //smoothing factor within the PID
-#define PID_dT ((16.0 * 8.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine
+  #define PID_INTEGRAL_DRIVE_MAX 255  //limit for the integral term
+  #define K1 0.95  //smoothing factor within the PID
+  #define PID_dT ((16.0 * 8.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine
 
-// If you are using a preconfigured hotend then you can use one of the value sets by uncommenting it
-// Makergear V3B 24v heater
-    #define DEFAULT_Kp 25.89
-    #define DEFAULT_Ki 1.94
-    #define DEFAULT_Kd 86.53
+  // If you are using a preconfigured hotend then you can use one of the value sets by uncommenting it
+  // Makergear V3B 24v heater
+  #define DEFAULT_Kp 25.89
+  #define DEFAULT_Ki 1.94
+  #define DEFAULT_Kd 86.53
 
-// Ultimaker
-//    #define  DEFAULT_Kp 22.2
-//    #define  DEFAULT_Ki 1.08
-//    #define  DEFAULT_Kd 114
-
-// Mendel Parts V9 on 12V
-//    #define  DEFAULT_Kp 63.0
-//    #define  DEFAULT_Ki 2.25
-//    #define  DEFAULT_Kd 440
+  // Ultimaker
+  //    #define  DEFAULT_Kp 22.2
+  //    #define  DEFAULT_Ki 1.08
+  //    #define  DEFAULT_Kd 114
+  
+  // Mendel Parts V9 on 12V
+  //    #define  DEFAULT_Kp 63.0
+  //    #define  DEFAULT_Ki 2.25
+  //    #define  DEFAULT_Kd 440
 #endif // PIDTEMP
 
 // Bed Temperature Control
@@ -257,12 +257,21 @@
 #define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current
 
 #ifdef PIDTEMPBED
-    //24v silicone heater into 3mm borosilicate
-    #define  DEFAULT_bedKp 10.00
-    #define  DEFAULT_bedKi .023
-    #define  DEFAULT_bedKd 305.4
+    // 24v silicone heater
+    #define DEFAULT_bedKp  152.64
+    #define DEFAULT_bedKi   10.59
+    #define DEFAULT_bedKd  305.40
+    
+    // RECEIVED - 2014-08-09
+    // bias: 227 d: 27 min: 89.86 max: 90.14
+    // Ku: 254.40 Tu: 28.84
+    // Classic PID 
+    //  Kp: 152.64
+    //  Ki: 10.59
+    //  Kd: 550.19
+
     // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
-#endif // PIDTEMPBED
+#endif  // PIDTEMPBED
 
 
 //this prevents dangerous Extruder moves, i.e. if the temperature is under the limit
@@ -430,7 +439,7 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
 // For delta: Distance between nozzle and print surface after homing.
-#define MANUAL_Z_HOME_POS 116.1
+#define MANUAL_Z_HOME_POS 120
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
