@@ -258,17 +258,25 @@
 
 #ifdef PIDTEMPBED
     // 24v silicone heater
-    #define DEFAULT_bedKp  152.64
-    #define DEFAULT_bedKi   10.59
-    #define DEFAULT_bedKd  305.40
+    #define DEFAULT_bedKp  307.53
+    #define DEFAULT_bedKi   33.04
+    #define DEFAULT_bedKd  715.51
     
-    // RECEIVED - 2014-08-09
+    // RECEIVED - 2014-08-09 - Bare silicone heater
     // bias: 227 d: 27 min: 89.86 max: 90.14
     // Ku: 254.40 Tu: 28.84
     // Classic PID 
     //  Kp: 152.64
     //  Ki: 10.59
     //  Kd: 550.19
+    
+    //  RECEIVED - 2014-08-24 - Glued to aluminum / cork insulator
+    //  bias: 169 d: 85 min: 89.81 max: 90.24
+	//  Ku: 512.55 Tu: 18.61
+ 	//  Classic PID 
+ 	//   Kp: 307.53
+ 	//   Ki: 33.04
+ 	//   Kd: 715.51
 
     // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif  // PIDTEMPBED
