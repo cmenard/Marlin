@@ -257,7 +257,7 @@
 #define MAX_BED_POWER 255 // limits duty cycle to bed; 255=full current
 
 #ifdef PIDTEMPBED
-    // 24v silicone heater
+    // 24v silicone heater (from 2014-08-24)
     #define DEFAULT_bedKp  307.53
     #define DEFAULT_bedKi   33.04
     #define DEFAULT_bedKd  715.51

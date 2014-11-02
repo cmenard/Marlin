@@ -2232,11 +2232,7 @@ DaveX plan for Teensylu/printrboard-type pinouts (ref teensylu & sprinter) for a
 #define HEATER_1_PIN  -1  // was 7
 #define TEMP_1_PIN    -1  // was 1
 
-#ifdef BARICUDA
-#define HEATER_2_PIN   6
-#else
 #define HEATER_2_PIN  -1
-#endif
 #define TEMP_2_PIN    -1
 
 #define E0_STEP_PIN   34
@@ -2257,7 +2253,7 @@ DaveX plan for Teensylu/printrboard-type pinouts (ref teensylu & sprinter) for a
 #define SDPOWER       -1
 #define SDSS          53
 #define LED_PIN       13
-#define FAN_PIN        6
+#define FAN_PIN       -1  // Was 6
 #define PS_ON_PIN      4
 #define KILL_PIN      -1  // 80 with Smart Controller LCD
 #define SUICIDE_PIN   -1  // PIN that has to be turned on right after start, to keep power flowing.
