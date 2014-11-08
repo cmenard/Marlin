@@ -447,7 +447,7 @@ const bool DISABLE_INACTIVE_EXTRUDER = false;
 #define MANUAL_X_HOME_POS 0
 #define MANUAL_Y_HOME_POS 0
 // For delta: Distance between nozzle and print surface after homing.
-#define MANUAL_Z_HOME_POS 120
+#define MANUAL_Z_HOME_POS 113.4		// As of 2014-11-05
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
