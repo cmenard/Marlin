@@ -33,11 +33,7 @@
 #define SERIAL_PORT 0
 
 // This determines the communication speed of the printer
-<<<<<<< HEAD
 #define BAUDRATE 115200
-=======
-#define BAUDRATE 250000
->>>>>>> origin/Stable
 
 // This enables the serial port associated to the Bluetooth interface
 //#define BTENABLED              // Enable BT interface on AT90USB devices
@@ -45,11 +41,7 @@
 // The following define selects which electronics board you have.
 // Please choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-<<<<<<< HEAD
 #define MOTHERBOARD 301
-=======
-  #define MOTHERBOARD BOARD_ULTIMAKER
->>>>>>> origin/Stable
 #endif
 
 // Define this to set a custom name for your generic Mendel,
