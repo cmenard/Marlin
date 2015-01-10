@@ -206,18 +206,18 @@ SERIAL_ECHOLNPGM("Scaling factors:");
     SERIAL_ECHOPAIR("   M209 S",(long unsigned int)autoretract_enabled); 
     SERIAL_ECHOLN(""); 
     SERIAL_ECHO_START;
-    SERIAL_ECHOLNPGM("Retract: S=Length (mm) F:Speed (mm/s) Z: ZLift (mm)");
+    SERIAL_ECHOLNPGM("Retract: S=Length (mm) F:Speed (mm/m) Z: ZLift (mm)");
     SERIAL_ECHO_START;
-    SERIAL_ECHOPAIR("   M207 S",retract_recover_length); 
-    SERIAL_ECHOPAIR(" F" ,retract_feedrate); 
+    SERIAL_ECHOPAIR("   M207 S",retract_length); 
+    SERIAL_ECHOPAIR(" F" ,retract_feedrate*60); 
     SERIAL_ECHOPAIR(" Z" ,retract_zlift);
     SERIAL_ECHOLN(""); 
     SERIAL_ECHO_START;
-    SERIAL_ECHOLNPGM("Recover: S=Extra length (mm) F:Speed (mm/s)");
+    SERIAL_ECHOLNPGM("Recover: S=Extra length (mm) F:Speed (mm/m)");
     SERIAL_ECHO_START;
     SERIAL_ECHOPAIR("   M208 S",retract_recover_length); 
-    SERIAL_ECHOPAIR(" F" ,retract_recover_feedrate); 
-    SERIAL_ECHOLN("");
+    SERIAL_ECHOPAIR(" F" ,retract_recover_feedrate*60); 
+    SERIAL_ECHOLN(""); 
 #endif
 } 
 #endif
