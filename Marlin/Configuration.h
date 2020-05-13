@@ -121,7 +121,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -801,7 +801,7 @@
  *   http://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-  #define JUNCTION_DEVIATION_MM 0.020 // (mm) .4*10*10/2000=0.020 Distance from real junction edge default 0.013
+  #define JUNCTION_DEVIATION_MM 0.014 // (mm) .4*10*10/2000=0.020 Distance from real junction edge default 0.013
 #endif
 
 /**
