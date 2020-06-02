@@ -1872,7 +1872,7 @@
 // Panucatt VIKI LCD with status LEDs,
 // integrated click & L/R/U/D buttons, separate encoder inputs.
 //
-#define LCD_I2C_VIKI
+//#define LCD_I2C_VIKI
 
 //
 // CONTROLLER TYPE: Shift register panels
@@ -1907,7 +1907,7 @@
 // RepRapDiscount FULL GRAPHIC Smart Controller
 // http://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
 //
-//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 
 //
 // ReprapWorld Graphical LCD
