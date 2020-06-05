@@ -500,7 +500,7 @@
   #define X_DUAL_ENDSTOPS
   #if ENABLED(X_DUAL_ENDSTOPS)
     #define X2_USE_ENDSTOP _XMAX_
-    #define X_DUAL_ENDSTOPS_ADJUSTMENT  0
+    #define X2_ENDSTOP_ADJUSTMENT  0
   #endif
 #endif
 
@@ -510,7 +510,7 @@
   #define Y_DUAL_ENDSTOPS
   #if ENABLED(Y_DUAL_ENDSTOPS)
     #define Y2_USE_ENDSTOP _YMAX_
-    #define Y_DUAL_ENDSTOPS_ADJUSTMENT  0
+    #define Y2_ENDSTOP_ADJUSTMENT  0
   #endif
 #endif
 
@@ -2659,8 +2659,8 @@
  *
  * See http://marlinfw.org/docs/configuration/laser_spindle.html for more config details.
  */
-#define SPINDLE_FEATURE
-#define LASER_FEATURE
+//#define SPINDLE_FEATURE
+//#define LASER_FEATURE
 #if EITHER(SPINDLE_FEATURE, LASER_FEATURE)
   #define SPINDLE_LASER_ACTIVE_HIGH     false  // Set to "true" if the on/off function is active HIGH
   #define SPINDLE_LASER_PWM             true   // Set to "true" if your controller supports setting the speed/power
