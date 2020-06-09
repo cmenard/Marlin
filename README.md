@@ -12,10 +12,11 @@ Modified Marlin 2.0 firmware for the BigTreeTech SKR1.3 with TMC2208 UART driver
 ## Possible changes to use with your MPCNC:
 Marlin\configuration.h
 * If you have 3 wire end stops or your end stop isn't working as expected in Marlin\configuration.h change true/false on the appropriate ENDSTOP_INVERTING from lines 639 to 645
-* If you have a 16tooth pulley then you are good to go. If you have a 20 tooth then edit line 720 to have the values of 80, 80, 400, 80
-* You can change X_BED_SIZE and Y_BED_SIZE on lines 1054 and 1055 to match your cutting area to assist the firmware with not allowing you to crash once homed (I have not gotten software max endstops to work perfectly yet)
+* If you have a 16tooth pulley then you are good to go. If you have a 20 tooth then edit line 734 to have the values of 80, 80, 400, 80
+* You can change X_BED_SIZE and Y_BED_SIZE on lines 1096 and 1097 to match your cutting area to assist the firmware with not allowing you to crash once homed (I have not gotten software max endstops to work perfectly yet)
+
 Marlin\Configuration_adv.h
-* If your motors aren't moving the axis the same direction go change INVERT_X2_VS_X_DIR or INVERT_Y2_VS_Y_DIR from true to false (or flip the motor wires). If both motors are working as they should but going the wrong way check lines 1022-1024 in Configuration.h (or flip the motor wires)
+* If your motors aren't moving the axis the same direction go change INVERT_X2_VS_X_DIR or INVERT_Y2_VS_Y_DIR from true to false (or flip the motor wires). If both motors are working as they should but going the wrong way check lines 482-515 in Configuration_adv.h (or flip the motor wires)
 
 ## Source info:
 * Firmware is based on Ryan's <a href="https://www.v1engineering.com/marlin-firmware/">original MPCNC firmware</a> from V1Engineering 
