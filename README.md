@@ -17,7 +17,7 @@ Marlin\configuration.h
 
 Marlin\Configuration_adv.h
 * If your motors aren't moving the axis the same direction go change INVERT_X2_VS_X_DIR or INVERT_Y2_VS_Y_DIR from true to false (or flip the motor wires). If both motors are working as they should but going the wrong way check lines 482-515 in Configuration_adv.h (or flip the motor wires)
-* SpreadCycle chopper parameters have been updated to reflect the 19v power supply I'm using.  If you're using another input voltage level, change the value on line 2260 from the list in the comment section above it.
+* SpreadCycle chopper parameters CHOPPER_TIMING CHOPPER_DEFAULT_19V have been updated to reflect the 19v power supply I'm using.  If you're using another input voltage level, change the value on line 2260 from the list in the comment section above it.
 
 ## Source info:
 * Firmware is based on Ryan's <a href="https://www.v1engineering.com/marlin-firmware/">original MPCNC firmware</a> from V1Engineering 
