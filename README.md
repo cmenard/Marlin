@@ -7,7 +7,7 @@ Modified Marlin 2.0 firmware for the BigTreeTech SKR1.3 with TMC2208 UART driver
 * Works with the MPCNC with 5 motors via 5 stepper drivers and with end stops enabled
 * Marlin M122 enabled to allow diagnostics of TMC drivers
 * Babystepping is enabled to allow slight Z changes when running a project
-* Uses the heated bed pins as the "fake" extruder (so these are not available for use)
+* Extruders=0 in Configuration.h and pin definitions are close to normal in pins_BTT_SKR_V1_3.h
 
 ## Possible changes to use with your MPCNC:
 Marlin\configuration.h
