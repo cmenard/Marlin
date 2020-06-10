@@ -3,7 +3,7 @@ Modified Marlin 2.0 firmware for the BigTreeTech SKR1.3 with TMC2208 UART driver
 
 ## Features:
 * Compatibility with <a href="https://www.amazon.com/BIGTREETECH-Mother-Screen-TMC2208-Printer/dp/B07WH6P9RC/ref=sr_1_7?crid=1IER3G7Y9PKIQ&dchild=1&keywords=bigtreetech+skr+v1.3&qid=1591711657&sprefix=bigtreetech+sk%2Caps%2C202&sr=8-7">SKR1.3 from BigTreeTech</a>
-* Immediate compatibility with TMC2208 in UART mode with Stealthchop and driver monitoring enabled
+* Immediate compatibility with TMC2208 in UART mode with driver monitoring enabled
 * Works with the MPCNC with 5 motors via 5 stepper drivers and with end stops enabled
 * Marlin M122 enabled to allow diagnostics of TMC drivers
 * Babystepping is enabled to allow slight Z changes when running a project
@@ -17,6 +17,7 @@ Marlin\configuration.h
 
 Marlin\Configuration_adv.h
 * If your motors aren't moving the axis the same direction go change INVERT_X2_VS_X_DIR or INVERT_Y2_VS_Y_DIR from true to false (or flip the motor wires). If both motors are working as they should but going the wrong way check lines 482-515 in Configuration_adv.h (or flip the motor wires)
+* StealthChop is disabled by default.  To enable uncomment lines 2242-2244 containing STEALTHCHOP_ 
 * SpreadCycle chopper parameters CHOPPER_TIMING CHOPPER_DEFAULT_19V have been updated to reflect the 19v power supply I'm using.  If you're using another input voltage level, change the value on line 2260 from the list in the comment section above it.
 
 ## Source info:
