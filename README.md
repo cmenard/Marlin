@@ -26,6 +26,8 @@ Marlin\Configuration_adv.h
 * Thanks to <a href="https://github.com/BlomsD/MPCNC-SKR1.3-TMC2208UART">BlomsD</a> for the initial Marlin 2.0.x build
 * Thanks to <a href="https://www.youtube.com/channel/UCbgBDBrwsikmtoLqtpc59Bw">TeachingTech</a> for info on the SKR1.3 and pins.
 
+![SKR v1.3 Pins](SKR v1.3-PIN.png)
+
 ## Marlin 2.0
 
 Marlin 2.0 takes this popular RepRap firmware to the next level by adding support for much faster 32-bit and ARM-based boards while improving support for 8-bit AVR boards. Read about Marlin's decision to use a "Hardware Abstraction Layer" below.
