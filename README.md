@@ -26,7 +26,7 @@ Marlin\Configuration_adv.h
 * Thanks to <a href="https://github.com/BlomsD/MPCNC-SKR1.3-TMC2208UART">BlomsD</a> for the initial Marlin 2.0.x build
 * Thanks to <a href="https://www.youtube.com/channel/UCbgBDBrwsikmtoLqtpc59Bw">TeachingTech</a> for info on the SKR1.3 and pins.
 
-![SKR v1.3 Pins](SKR v1.3-PIN.png)
+![SKR v1.3 Pins](https://github.com/cmenard/Marlin/blob/MPCNC_SKR1.3_v2.0.5.3/SKR%20v1.3-PIN.png)
 
 ## Marlin 2.0
 
