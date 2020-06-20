@@ -87,6 +87,13 @@
 #endif
 
 //
+// M3/M4/M5 - Spindle/Laser Control
+//
+//#define SPINDLE_LASER_PWM_PIN                 
+#define SPINDLE_LASER_ENA_PIN              P2_00
+//#define SPINDLE_DIR_PIN 
+
+//
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
